@@ -1,3 +1,4 @@
+import MainHeader from "@/components/header/header";
 import "./globals.css";
 
 export const metadata = {
@@ -11,7 +12,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="ko">
       <body>
         <div className="header-background">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
@@ -33,7 +34,7 @@ export default function RootLayout({
             ></path>
           </svg>
         </div>
-
+        <MainHeader />
         {children}
       </body>
     </html>
