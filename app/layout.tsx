@@ -27,3 +27,5 @@ export default function RootLayout({
 // -> 그래서 about 폴더에 layout.tsx 파일을 만들어서 중첩된 레이아웃을 만들 수 있다.
 
 // children은 페이지 컨텐츠를 나타낸다.
+
+// icon.png를 사용하면 favicon으로 사용할 수 있다.
