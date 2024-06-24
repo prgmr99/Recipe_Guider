@@ -1,5 +1,6 @@
 import Image from "next/image";
 import styles from "./page.module.css";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -8,6 +9,7 @@ export default function Home() {
         <p>
           Get started by editing&nbsp;
           <code className={styles.code}>app/page.tsx</code>
+          <Link href="/about">about us</Link>
         </p>
         <div>
           <a
@@ -93,3 +95,5 @@ export default function Home() {
     </main>
   );
 }
+
+// 페이지를 정의하는 파일
