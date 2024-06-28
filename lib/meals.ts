@@ -10,3 +10,7 @@ export async function getAllMeals() {
 }
 
 // 서버 컴포넌트에서는 async await을 사용할 수 있다. => why?!
+
+export function getMeal(slug: string) {
+  return db.prepare("SELECT * FROM meals WHERE slug = ?").get(slug);
+}

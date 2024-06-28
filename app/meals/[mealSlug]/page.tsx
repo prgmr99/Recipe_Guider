@@ -1,11 +1,47 @@
+import { getMeal } from "@/lib/meals";
+import classes from "./page.module.css";
+import Image from "next/image";
+
 type Params = {
-  slug: string;
+  mealSlug: string;
+};
+
+type Meal = {
+  image: string;
+  title: string;
+  creator_email?: string;
+  creator?: string;
+  summary?: string;
+  instructions: string;
 };
 
 export default function MealsPage({ params }: { params: Params }) {
+  const meal: Meal = getMeal(params.mealSlug) as Meal;
+
+  meal.instructions = meal.instructions.replace(/\n/g, "<br />");
+
   return (
-    <section>
-      <h1>{params.slug}</h1>
-    </section>
+    <>
+      <header className={classes.header}>
+        <div className={classes.image}>
+          <Image src={meal.image} alt={meal.title} fill />
+        </div>
+        <div className={classes.headerText}>
+          <h1>{meal.title}</h1>
+          <p className={classes.creator}>
+            by <a href={`mailto:${meal.creator_email}`}>{meal.creator}</a>
+          </p>
+          <p className={classes.summary}>{meal.summary}</p>
+        </div>
+      </header>
+      <main>
+        <p
+          className={classes.instructions}
+          dangerouslySetInnerHTML={{
+            __html: meal.instructions,
+          }}
+        ></p>
+      </main>
+    </>
   );
 }
