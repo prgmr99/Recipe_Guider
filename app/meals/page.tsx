@@ -1,8 +1,13 @@
 import Link from "next/link";
 import classes from "./page.module.css";
 import MealsGrid from "@/components/meals/meals-grid";
+import { getAllMeals } from "@/lib/meals";
 
-export default function MealsPage() {
+export default async function MealsPage() {
+  // next.js에서는 이미 해당 컴포넌트가 기본적으로 서버에서 실행되기 때문에
+  // fetch를 사용하지 않아도 되고, 서버에서 직접 가져오면 된다.
+  const meals: any = await getAllMeals();
+
   return (
     <>
       <header className={classes.header}>
@@ -18,7 +23,7 @@ export default function MealsPage() {
         </p>
       </header>
       <main className={classes.main}>
-        <MealsGrid meals={[]} />
+        <MealsGrid meals={meals} />
       </main>
     </>
   );

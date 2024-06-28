@@ -8,7 +8,7 @@ interface Meal {
 
 export default function MealsGrid({ meals }: { meals: Meal[] }) {
   return (
-    <ul>
+    <ul className={classes.meals}>
       {meals.map((meal) => (
         <li key={meal.id}>
           <MealItem {...meal} />
