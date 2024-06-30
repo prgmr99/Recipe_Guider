@@ -1,4 +1,5 @@
 "use server";
+import { redirect } from "next/navigation";
 import { saveMeal } from "./meals";
 
 // 서버 액션을 해당 함수에서만 보장한다.
@@ -14,4 +15,5 @@ export async function shareMeal(formData: FormData) {
   };
 
   await saveMeal(meal);
+  redirect("/meals");
 }
