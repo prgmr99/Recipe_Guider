@@ -9,7 +9,7 @@ interface ImagePickerProps {
 }
 
 export default function ImagePicker({ label, name }: ImagePickerProps) {
-  const [pickedImage, setPickedImage] = useState(null);
+  const [pickedImage, setPickedImage] = useState<string | null>(null);
   const imageInput = useRef<HTMLInputElement>(null);
 
   function handlePickImage() {
@@ -17,6 +17,8 @@ export default function ImagePicker({ label, name }: ImagePickerProps) {
   }
 
   function handleImageChange(event: ChangeEvent<HTMLInputElement>) {
+    if (event.target.files === null) return;
+
     const file = event.target.files[0];
 
     if (!file) {
@@ -26,7 +28,9 @@ export default function ImagePicker({ label, name }: ImagePickerProps) {
 
     const fileReader = new FileReader();
     fileReader.onload = () => {
-      setPickedImage(fileReader.result);
+      if (typeof fileReader.result === "string") {
+        setPickedImage(fileReader.result);
+      }
     };
 
     fileReader.readAsDataURL(file);
